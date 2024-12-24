@@ -204,6 +204,9 @@ double checkBoundsWithSampling(int k, int degree, std::default_random_engine gen
                 evalUpper += wUpper[i * degree + j] * pow(sample.x[i], j + 1);
             }
         }
+        // if !(evalLower <= evalFLow + Constants::EPS){
+        //     print(evalLower)
+        // }
 
         assert (evalLower <= evalFLow + Constants::EPS && evalFUpp <= evalUpper + Constants::EPS);
         avgLen += evalUpper - evalLower;

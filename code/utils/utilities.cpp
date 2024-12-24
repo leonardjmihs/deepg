@@ -85,12 +85,30 @@ void Image::print_ascii() const {
   std::cout << "====================================================================" << std::endl;
 }
 
+// Interval Image::find_pixel(int x, int y, int i) const {
+//   if (x % 2 == nRows % 2 || y % 2 == nCols % 2) {
+//     return {-noise, noise};
+//   }
+//   int c = (x + (nCols - 1)) / 2;
+//   int r = (y + (nRows - 1)) / 2;
+//   if (r < 0 || r >= nRows || c < 0 || c >= nCols) {
+//     return {-noise, noise};
+//   }
+//   return a[r][c][i];
+// }
+
+// Pixel<double> Image::getPixel(double r, double c, int channel) const {
+//     return {2 * c - (nCols - 1), 2 * r - (nRows - 1), channel};
+// }
+
 Interval Image::find_pixel(int x, int y, int i) const {
   if (x % 2 == nRows % 2 || y % 2 == nCols % 2) {
     return {-noise, noise};
   }
   int c = (x + (nCols - 1)) / 2;
   int r = (y + (nRows - 1)) / 2;
+  // int c = x;
+  // int r = y;
   if (r < 0 || r >= nRows || c < 0 || c >= nCols) {
     return {-noise, noise};
   }
@@ -99,6 +117,7 @@ Interval Image::find_pixel(int x, int y, int i) const {
 
 Pixel<double> Image::getPixel(double r, double c, int channel) const {
     return {2 * c - (nCols - 1), 2 * r - (nRows - 1), channel};
+    // return {c, r, channel};
 }
 
 void Statistics::inc() {

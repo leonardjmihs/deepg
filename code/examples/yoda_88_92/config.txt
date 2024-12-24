@@ -1,0 +1,21 @@
+dataset               yoda
+noise                 0
+chunks                1
+inside_splits         5
+method                polyhedra
+spatial_transform     Rotation(88,92)
+num_tests             1
+ub_estimate           Triangle
+num_attacks           100
+poly_eps              0.003
+num_threads           10
+max_coeff             20
+lp_samples            1000
+num_poly_check        50
+set                   test
+
+
+
+
+
+

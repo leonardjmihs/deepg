@@ -193,7 +193,7 @@ int main(int argc, char** argv) {
         }
     }
     
-    assert(dataset == "mnist" || dataset == "fashion" || dataset == "cifar10" || dataset == "imagenet");
+    assert(dataset == "mnist" || dataset == "fashion" || dataset == "cifar10" || dataset == "imagenet" || dataset == "custom" || dataset == "yoda" || dataset == "custom_20"  || dataset=="custom_100");
     SpatialTransformation& spatialTransformation = *getSpatialTransformation(transformName);
     PixelTransformation& pixelTransformation = *getPixelTransformation(pixelTransformName);
     const InterpolationTransformation& interpolationTransformation = InterpolationTransformation();
@@ -206,13 +206,22 @@ int main(int argc, char** argv) {
 	  nRows = nCols = 28;
 	} else if (dataset == "imagenet") {
 	  nRows = nCols = 250;
+	} else if (dataset == "custom") {
+	  nRows = nCols = 10;
+	} else if (dataset == "yoda") {
+	  nRows = nCols = 10;
+	} else if (dataset == "custom_20") {
+	  nRows = nCols = 20;
+	} else if (dataset == "custom_100") {
+	  nRows = nCols = 100;
 	} else {
 	  assert(false);
 	}
 
 	cout << "nRows: " << nRows << ", nCols: " << nCols << endl;
 
-    int nChannels = (dataset == "mnist" || dataset == "fashion") ? 1 : 3;
+    int nChannels = (dataset == "mnist" || dataset == "fashion" || "custom") ? 1 : 3;
+    // int nChannels = (dataset == "mnist" || dataset == "fashion") ? 1 : 3;
     double totalPolyRuntime = 0, totalBoxRuntime = 0;
 
     ifstream fin(images);
@@ -241,6 +250,7 @@ int main(int argc, char** argv) {
         cout << "Image #" << j << endl;
         string out_file = out_dir + "/" + to_string(j) + ".csv";
         string attack_file = out_dir + "/attack_" + to_string(j) + ".csv";
+
 
         ofstream fou(out_file);
         ofstream fattack(attack_file);

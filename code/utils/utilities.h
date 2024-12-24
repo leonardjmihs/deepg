@@ -22,7 +22,8 @@ public:
 class Image {
   
 public:
-  Interval a[35][35][3];
+//   Interval a[35][35][3];
+  Interval a[100][100][3];
   int nRows, nCols, nChannels;
   double noise;
 
